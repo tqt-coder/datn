@@ -1,16 +1,23 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from transformers import pipeline
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
-    question = '''Quốc Tuấn học trường gì?'''
-    context = '''Quốc Tuấn sinh ngày 31/01/2001, học trường SPKT tại Hồ Chí Minh. Quê anh ấy ở Củ Chi'''
+@app.route('/answer', methods=['POST'])
+def answer():
+    data = request.form
+    # load request with 2 parameters: questions and contexts
+    question = data['questions']
+    context = data['contexts']
     question_answerer = pipeline(
         "question-answering", model="../model/DistilBERT")
     response = question_answerer(question=question, context=context)
     return response['answer']
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
