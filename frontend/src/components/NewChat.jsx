@@ -5,7 +5,7 @@ function NewChat() {
     return (
         <div className="newChat chatRow">
             <PlusIcon className="iconChat" />
-            <p>New Chat</p>
+            <p>New Example</p>
         </div>
     );
 }

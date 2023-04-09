@@ -1,17 +1,15 @@
-import HomePage from './app/page';
-import ChatInput from './components/ChatInput';
+import './App.css';
+import HomePage from './app/page'
 import SideBar from './components/SideBar';
-import './App.css'
 
 function App() {
   return (
-    <div className='app'>
-      <div className="sideBar">
+    <div className="App">
+        <div className="sideBar">
             <SideBar />
       </div>
       <div className="ClientProvider">
         <HomePage/>
-        <ChatInput/>
       </div>
     </div>
   );
