@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/answer', methods=['POST'])
 def answer():
-    data = request.json
+    data = request.form
     # load request with 2 parameters: questions and contexts
     question = data['questions']
     context = data['contexts']
