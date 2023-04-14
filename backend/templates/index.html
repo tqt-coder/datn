@@ -22,7 +22,7 @@
             </div>
             <form class="space-y-2" action="/answer" method="post">
                 <div class="qA">
-                    <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required >
+                    <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required value="{{question}}">
                     <button class="btnCompute" type="submit">
                         Compute
                     </button>
@@ -33,13 +33,15 @@
                     </span>
                     <textarea name="contexts" id="" cols="30" rows="10" class="inputContent" 
                     placeholder="Your context here..."
-                    ></textarea>
+                    >
+                    {{context}}
+                    </textarea>
                     <!-- <span class="inputContent" role="textbox" contenteditable="" spellcheck="false" dir="auto"> -->
                     </span>
                 </label>
             </form>
             <div class="answer">
-                <span></span>
+                <span>{{answer}}</span>
                 <!-- <span class="score">0.805</span>  -->
             </div>
         </div>

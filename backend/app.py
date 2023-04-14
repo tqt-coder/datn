@@ -12,7 +12,8 @@ def answer():
     question_answerer = pipeline(
         "question-answering", model="../model/train_bert_transformer/checkpoint-3000")
     response = question_answerer(question=question, context=context)
-    return response['answer']
+    # return response['answer']
+    return render_template("./index.html", question=question, context=context, answer=response['answer'])
 
 @app.route('/')
 def index():
