@@ -10,10 +10,11 @@ def answer():
     question = data['questions']
     context = data['contexts']
     question_answerer = pipeline(
-        "question-answering", model="../model/train_bert_transformer/checkpoint-3000")
+        "question-answering", model="../model/train_bert_transformer/checkpoint-3000")  # change url when run
     response = question_answerer(question=question, context=context)
     # return response['answer']
     return render_template("./index.html", question=question, context=context, answer=response['answer'])
+
 
 @app.route('/')
 def index():
