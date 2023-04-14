@@ -5,15 +5,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Bert-Transfromer</title>
 </head>
 
-<body>
-    <form action="/answer" method="post">
-        <textarea name="contexts" id="" cols="30" rows="10">hello</textarea>
-        <input type="text" name="questions">
-        <button>Answer</button>
-    </form>
-</body>
 
+<body>
+    <div className="ClientProvider">
+        <div class="homePage">
+            <h2 class="title">Hosted Inference API</h2>
+
+            <div class="content">
+                <div class="titleQA">
+                    <span>Question Answering</span>
+                </div>
+            </div>
+            <form class="space-y-2" action="/answer" method="post">
+                <div class="qA">
+                    <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required >
+                    <button class="btnCompute" type="submit">
+                        Compute
+                    </button>
+                </div>
+                <label style="display: block;">
+                    <span class="titleContext">
+                        Context
+                    </span>
+                    <textarea name="contexts" id="" cols="30" rows="10" class="inputContent" 
+                    placeholder="Your context here..."
+                    ></textarea>
+                    <!-- <span class="inputContent" role="textbox" contenteditable="" spellcheck="false" dir="auto"> -->
+                    </span>
+                </label>
+            </form>
+            <div class="answer">
+                <span></span>
+                <!-- <span class="score">0.805</span>  -->
+            </div>
+        </div>
+</body>
 </html>

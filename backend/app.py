@@ -5,15 +5,14 @@ app = Flask(__name__)
 
 @app.route('/answer', methods=['POST'])
 def answer():
-    data = request.json
+    data = request.form
     # load request with 2 parameters: questions and contexts
     question = data['questions']
     context = data['contexts']
     question_answerer = pipeline(
-        "question-answering", model="../model/DistilBERT")
+        "question-answering", model="../model/train_bert_transformer/checkpoint-3000")
     response = question_answerer(question=question, context=context)
     return response['answer']
-
 
 @app.route('/')
 def index():
