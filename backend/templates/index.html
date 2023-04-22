@@ -13,7 +13,7 @@
 <body>
     <div className="ClientProvider">
         <div class="homePage">
-            <h2 class="title">Hosted Inference API</h2>
+            <h2 class="title">VietNamese Question Answering</h2>
 
             <div class="content">
                 <div class="titleQA">
@@ -24,14 +24,17 @@
                 <div class="qA">
                     <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required value="{{question}}">
                     <button class="btnCompute" type="submit">
-                        Compute
+                        Answer
                     </button>
                 </div>
                 <label style="display: block;">
                     <span class="titleContext">
                         Context
                     </span>
-                    <textarea name="contexts" id="" cols="30" rows="10" class="inputContent" 
+                    <textarea name="contexts" id="" 
+                    cols="30" 
+                    rows="10" 
+                    class="inputContent" 
                     placeholder="Your context here..."
                     >
                     {{context}}
