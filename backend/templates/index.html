@@ -23,7 +23,7 @@
             <form class="space-y-2" action="/answer" method="post">
                 <div class="qA">
                     <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required value="{{question}}">
-                    <button class="btnCompute" type="submit">
+                    <button class="btnCompute" type="submit" value="Upload">
                         Answer
                     </button>
                 </div>
@@ -31,7 +31,9 @@
                     <span class="titleContext">
                         Context
                     </span>
-                    <textarea name="contexts" id="" 
+                    <p name="file">{{name}}</p>
+                    {% if context != NULL %}
+                    <textarea 
                     cols="30" 
                     rows="10" 
                     class="inputContent" 
@@ -39,14 +41,17 @@
                     >
                     {{context}}
                     </textarea>
+                    {% endif %}
                     <!-- <span class="inputContent" role="textbox" contenteditable="" spellcheck="false" dir="auto"> -->
                     </span>
                 </label>
             </form>
+            {% if answer != NULL %}
             <div class="answer">
                 <span>{{answer}}</span>
                 <!-- <span class="score">0.805</span>  -->
             </div>
+            {% endif %}
         </div>
 </body>
 </html>
