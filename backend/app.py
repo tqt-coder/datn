@@ -12,6 +12,7 @@ def success():
         f.save(f.filename)
         return render_template("index.html", name=f.filename)
 
+
 @app.route('/answer', methods=['POST'])
 def answer():
     data = request.form
@@ -22,13 +23,10 @@ def answer():
     # context = docx2txt.process(f)
     # print(context)
     question_answerer = pipeline(
-        "question-answering", model="C:/Nam4HK2/KLTN/Final/datn/model/checkpoint-3000")
+        "question-answering", model="../model/checkpoint-3000")
     response = question_answerer(question=question, context=context)
     # return response['answer']
     return render_template("./index.html", question=question, context=context, answer=response['answer'])
-
-
-
 
 
 @app.route('/')
