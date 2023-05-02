@@ -1,0 +1,4 @@
+transformers
+docx2txt
+torch
+Flask
