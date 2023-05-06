@@ -1,4 +1,5 @@
 transformers
 docx2txt
-torch
 Flask
+vncorenlp
+torch
