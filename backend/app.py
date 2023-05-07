@@ -3,6 +3,7 @@ import docx2txt
 import torch
 from transformers import AutoModel, AutoTokenizer
 from transformers import RobertaForQuestionAnswering, RobertaConfig, WEIGHTS_NAME
+from PyPDF2 import PdfFileReader
 
 # --------- Constant ----------------------
 MAX_SIZE = 256
@@ -14,14 +15,26 @@ tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
 model_2 = RobertaForQuestionAnswering(phobert.config).from_pretrained(
     "../model/phobert_model").to(DEVICE)
 
-
 app = Flask(__name__)
+
+def read_file(filename):
+    if filename.endswith(".docx"):
+        return docx2txt.process(filename)
+    elif filename.endswith(".pdf"):
+        with open(filename, 'rb') as pdf_file:
+          pdf = PdfFileReader(pdf_file)
+          pages = []
+          for page in pdf.pages:
+            text = page.extract_text()
+            pages.append(text)
+          return '\n'.join(pages)
+    else:
+        return "Unsupported file format."
 
 def split_text(text, max_length):
     sentences = text.split(', ')  # Chia đoạn thành các câu
     segments = []
     current_segment = ""
-
     for sentence in sentences:
         if len(current_segment) + len(sentence) + 2 <= max_length:  # Kiểm tra độ dài của đoạn văn bản
             current_segment += sentence + '. '  # Thêm câu vào đoạn văn bản hiện tại
@@ -29,20 +42,16 @@ def split_text(text, max_length):
             # Thêm đoạn văn bản vào danh sách các đoạn
             segments.append(current_segment.strip())
             current_segment = sentence + '. '  # Bắt đầu một đoạn mới
-
     if current_segment:
         # Thêm đoạn văn bản cuối cùng vào danh sách các đoạn
         segments.append(current_segment.strip())
-
     return segments
-
 
 @app.route('/success', methods=['POST'])
 def success():
     if request.method == 'POST':
         f = request.files['file']
         FILE_NAME = f.filename
-        # print(FILE_NAME)
         f.save(f.filename)
         return render_template("index.html", name=FILE_NAME)
 
@@ -57,7 +66,7 @@ def answer():
     data = request.form
     question = data['questions']
     file_name = data['filename']
-    context = docx2txt.process(file_name)
+    context = read_file(file_name)
     segments = split_text(context, MAX_SIZE)
 
     answers = []
