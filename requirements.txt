@@ -1,5 +1,6 @@
 transformers
 docx2txt
+PyPDF2=2.12.1
 Flask
 vncorenlp
 torch
