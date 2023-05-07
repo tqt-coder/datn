@@ -3,14 +3,19 @@ import docx2txt
 import torch
 from transformers import AutoModel, AutoTokenizer
 from transformers import RobertaForQuestionAnswering, RobertaConfig, WEIGHTS_NAME
+
+# --------- Constant ----------------------
 MAX_SIZE = 256
+DEVICE = torch.device('cpu')
+FILE_NAME = "CONTEXT.docx"
+# ----------- Load models --------------
 phobert = AutoModel.from_pretrained("vinai/phobert-large")
 tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
 model_2 = RobertaForQuestionAnswering(phobert.config).from_pretrained(
-    "../model/phobert_model").to(torch.device('cpu'))
+    "../model/phobert_model").to(DEVICE)
+
 
 app = Flask(__name__)
-
 
 def split_text(text, max_length):
     sentences = text.split(', ')  # Chia đoạn thành các câu
@@ -36,8 +41,10 @@ def split_text(text, max_length):
 def success():
     if request.method == 'POST':
         f = request.files['file']
+        FILE_NAME = f.filename
+        # print(FILE_NAME)
         f.save(f.filename)
-        return render_template("index.html", name=f.filename)
+        return render_template("index.html", name=FILE_NAME)
 
 
 @app.route('/')
@@ -49,7 +56,8 @@ def upload():
 def answer():
     data = request.form
     question = data['questions']
-    context = docx2txt.process("HCM.docx")
+    file_name = data['filename']
+    context = docx2txt.process(file_name)
     segments = split_text(context, MAX_SIZE)
 
     answers = []
@@ -59,7 +67,7 @@ def answer():
             question, segment, add_special_tokens=True, return_tensors="pt")
 
         # Move inputs tensor to device
-        inputs = {key: value.to(torch.device('cpu'))
+        inputs = {key: value.to(DEVICE)
                   for key, value in inputs.items()}
 
         # get start and end logits for answer
@@ -73,7 +81,7 @@ def answer():
 
         answers.append(answer)
 
-    # Kết hợp các câu trả lời thành kết quả cuối cùng
+    # take final answer
     final_answer = max(answers, key=len)
     return render_template("./index.html", question=question, context=context, answer=final_answer)
 
