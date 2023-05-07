@@ -8,7 +8,6 @@ from PyPDF2 import PdfFileReader
 # --------- Constant ----------------------
 MAX_SIZE = 256
 DEVICE = torch.device('cpu')
-FILE_NAME = "CONTEXT.docx"
 # ----------- Load models --------------
 phobert = AutoModel.from_pretrained("vinai/phobert-large")
 tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
@@ -17,19 +16,21 @@ model_2 = RobertaForQuestionAnswering(phobert.config).from_pretrained(
 
 app = Flask(__name__)
 
+
 def read_file(filename):
     if filename.endswith(".docx"):
         return docx2txt.process(filename)
     elif filename.endswith(".pdf"):
         with open(filename, 'rb') as pdf_file:
-          pdf = PdfFileReader(pdf_file)
-          pages = []
-          for page in pdf.pages:
-            text = page.extract_text()
-            pages.append(text)
-          return '\n'.join(pages)
+            pdf = PdfFileReader(pdf_file)
+            pages = []
+            for page in pdf.pages:
+                text = page.extract_text()
+                pages.append(text)
+            return '\n'.join(pages)
     else:
         return "Unsupported file format."
+
 
 def split_text(text, max_length):
     sentences = text.split(', ')  # Chia đoạn thành các câu
@@ -46,6 +47,7 @@ def split_text(text, max_length):
         # Thêm đoạn văn bản cuối cùng vào danh sách các đoạn
         segments.append(current_segment.strip())
     return segments
+
 
 @app.route('/success', methods=['POST'])
 def success():
@@ -92,7 +94,7 @@ def answer():
 
     # take final answer
     final_answer = max(answers, key=len)
-    return render_template("./index.html", question=question, context=context, answer=final_answer)
+    return render_template("./index.html", question=question, context=context, answer=final_answer, name=file_name)
 
 
 if __name__ == '__main__':
