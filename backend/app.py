@@ -12,7 +12,7 @@ DEVICE = torch.device('cpu')
 phobert = AutoModel.from_pretrained("vinai/phobert-large")
 tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
 model_2 = RobertaForQuestionAnswering(phobert.config).from_pretrained(
-    "../model/pho-bert/final_model").to(DEVICE)
+    "../model/phobert_model").to(DEVICE)
 
 app = Flask(__name__)
 
@@ -49,13 +49,17 @@ def split_text(text, max_length):
     return segments
 
 
-@app.route('/success', methods=['POST'])
+@app.route('/success', methods=['POST', 'GET'])
 def success():
     if request.method == 'POST':
         f = request.files['file']
-        FILE_NAME = f.filename
+        file_name = f.filename
         f.save(f.filename)
-        return render_template("index.html", name=FILE_NAME)
+        return render_template("index.html", name=file_name)
+    else:
+        print("=================> Get method")
+        file_name = request.args.get('file')
+        return render_template("index.html", name=file_name)
 
 
 @app.route('/')
