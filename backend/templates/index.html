@@ -6,15 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <title>Bert-Transfromer</title>
 </head>
 
 
 <body>
+    <div class="header">
+        <div class="sides">
+            <a href="/" class="logo">+ New File</a>
+        </div>
+        <div class="sides"> <a href="#" class="menu"> </a></div>
+        <div class="info">
+            <h1><a href="#">BERT TRANSFORMER</a></h1>
+            <h3>You can find the answer you want from the documentation</h3>
+            <div class="meta">
+                <a href="https://twitter.com/nodws" target="_b" class="author"></a><br>
+            </div>
+        </div>
+    </div>
     <div className="ClientProvider">
         <div class="homePage">
             <h2 class="title">VietNamese Question Answering</h2>
-
             <div class="content">
                 <div class="titleQA">
                     <span>Question Answering</span>
@@ -22,7 +36,8 @@
             </div>
             <form class="space-y-2" action="/answer" method="post">
                 <div class="qA">
-                    <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required value="{{question}}">
+                    <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required
+                        value="{{question}}">
                     <button class="btnCompute" type="submit" value="Upload">
                         Answer
                     </button>
@@ -34,12 +49,7 @@
                     <input type="text" hidden name="filename" value="{{name}}">
                     <p name="file">{{name}}</p>
                     {% if context != NULL %}
-                    <textarea 
-                    cols="30" 
-                    rows="10" 
-                    class="inputContent" 
-                    placeholder="Your context here..."
-                    >
+                    <textarea cols="30" rows="10" class="inputContent" placeholder="Your context here...">
                     {{context}}
                     </textarea>
                     {% endif %}
@@ -52,7 +62,18 @@
                 <span>{{answer}}</span>
                 <!-- <span class="score">0.805</span>  -->
             </div>
+            <div>
+                <a href="/success">
+                    <button class="Button" type="submit" value="Upload">
+                        <span class="Button-inner">
+                            Any Questions ?
+                        </span>
+                    </button>
+                </a>
+            </div>
             {% endif %}
         </div>
 </body>
+<script src="js/jquery-1.11.1.min.js"></script>
+
 </html>

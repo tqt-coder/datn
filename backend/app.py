@@ -12,7 +12,7 @@ DEVICE = torch.device('cpu')
 phobert = AutoModel.from_pretrained("vinai/phobert-large")
 tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
 model_2 = RobertaForQuestionAnswering(phobert.config).from_pretrained(
-    "../model/phobert_model").to(DEVICE)
+    "../model/pho-bert/final_model").to(DEVICE)
 
 app = Flask(__name__)
 
