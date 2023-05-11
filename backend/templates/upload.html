@@ -12628,6 +12628,12 @@
                 display: none;
             }
         }
+
+        .error-message {
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+        }
     </style>
 </head>
 
@@ -12644,7 +12650,8 @@
                 <div class="content">
 
                     <div class="upload_part">
-                        <button class="upload_button" id="upload_button" type = "submit" value="Upload">SELECT FILE</button>
+                        <button class="upload_button" id="upload_button" type="submit" value="Upload">SELECT
+                            FILE</button>
                         <div class="upload_hint" id="upload_hint">
                             Định dạng File: PDF, DOC và DOCX.
                         </div>
@@ -12672,18 +12679,24 @@
 
 
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
-<script>
-    $("#upload_button").click(function () {
-        $("#fileinput").trigger("click");
-    });
+    <script>
+        $("#upload_button").click(function () {
+            $("#fileinput").trigger("click");
+        });
 
-    $("#fileinput").change(function () {
-        $("#form").submit();
-        $("#upload_hint").text(
-            "Đang tải file " + $("#fileinput")[0].files[0].name + " lên server..."
-        );
-    });
-</script>
+        $("#fileinput").change(function () {
+            var fileName = $("#fileinput")[0].files[0].name;
+            var fileExtension = fileName.split(".").pop().toLowerCase();
+
+            if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx") {
+                $("#form").submit();
+                $("#upload_hint").text("Đang tải file " + fileName + " lên server...").removeClass("error-message");
+            } else {
+                $("#upload_hint").text("Định dạng file không hợp lệ. Vui lòng chọn file PDF, DOC hoặc DOCX.").addClass("error-message");
+                $("#fileinput").val(""); // Clear the file input field
+            }
+        });
+    </script>
+</body>
 
 </html>
