@@ -27,7 +27,8 @@
             <div class="container-fluid px-4 px-lg-0">
                 <div class="content">
                     <div class="upload_part">
-                        <h2 style="color:red; font-size:24px; text-transform: uppercase;">Tải văn bản</h2>
+                        <h2 style="color:red; font-size:24px; text-transform: uppercase;letter-spacing: 0.2px;">Tải văn
+                            bản</h2>
                         <button class="upload_button" id="upload_button" type="submit" value="Upload">
                             <img class="image-upload" src="{{ url_for('static',filename='assets/img/upload.png') }}"
                                 alt="upload file">
@@ -46,28 +47,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script>
-        $("#upload_button").click(function () {
-            $("#fileinput").trigger("click");
-        });
+        $(document).ready(function () {
+            $("#upload_button").click(function () {
+                $("#fileinput").trigger("click");
+            });
 
-        $("#fileinput").change(function () {
-            var fileName = $("#fileinput")[0].files[0].name;
-            var fileExtension = fileName.split(".").pop().toLowerCase();
+            $("#fileinput").change(function () {
+                var fileName = $("#fileinput")[0].files[0].name;
+                var fileExtension = fileName.split(".").pop().toLowerCase();
 
-            if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx") {
-                $("#form").submit();
-                $("#upload_hint").text("Đang tải file " + fileName + " lên server...").removeClass("error-message");
-
-                // Hàm đợi upload server khoảng 5 giây
-                setTimeout(function () {
-                    $("#upload_hint").text("File " + fileName + " đã được tải lên thành công!");
-                }, 5000);
-            } else {
-                $("#upload_hint").text("Định dạng file không hợp lệ. Vui lòng chọn file pdf, doc hoặc docx.").addClass("error-message");
-                $("#fileinput").val(""); // Xóa trường chọn file
-            }
+                if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx") {
+                    // Hàm đợi 5 giây trước khi chuyển hướng
+                    setTimeout(function () {
+                        $("#upload_hint").text("File " + fileName + " đã được tải lên thành công!");
+                        $("#upload_hint").text("Đang tải file " + fileName + " lên server...").removeClass("error-message");
+                        setTimeout(function () {
+                            window.location.href = "/success";
+                            $("#form").submit();
+                        }, 2000);
+                    }, 1000);
+                } else {
+                    $("#upload_hint").text("Định dạng file không hợp lệ. Vui lòng chọn file pdf, doc hoặc docx.").addClass("error-message");
+                    $("#fileinput").val(""); // Xóa trường chọn file
+                }
+            });
         });
     </script>
+
 </body>
 
 </html>

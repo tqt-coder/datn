@@ -48,6 +48,7 @@ body {
     width: 200px;
     height: 80px;
     object-fit: cover;
+    margin-left: 10px;
 }
 
 .upload_hint {
