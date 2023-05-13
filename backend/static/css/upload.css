@@ -13,6 +13,11 @@ body {
     background-size: cover;
 }
 
+.error-message {
+    color: red;
+    font-size: 20px;
+}
+
 .content {
     display: flex;
     justify-content: center;
@@ -27,20 +32,25 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     height: 200px;
-    width: 500px;
+    width: 800px;
     border-radius: 20px;
-	border: 0;
+    border: 0;
 }
 
 .upload_button {
-    background-color: rgb(8, 172, 242);
-    text-align: center;
-    color: white;
-    width: 150px;
-    height: 45px;
+    outline: none;
+    border-color: transparent;
+    cursor: pointer;
+    background: #fff;
+}
+
+.image-upload {
+    width: 200px;
+    height: 80px;
+    object-fit: cover;
 }
 
 .upload_hint {
-    margin-top: 30px;
+    margin-top: 10px;
+    font-size: 16px;
 }
-
