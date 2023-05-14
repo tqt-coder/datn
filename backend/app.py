@@ -6,8 +6,8 @@ from transformers import RobertaForQuestionAnswering, RobertaConfig, WEIGHTS_NAM
 from PyPDF2 import PdfFileReader
 
 # --------- Constant ----------------------
-MAX_SIZE = 256
-DEVICE = torch.device('cpu')
+MAX_SIZE = 300
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # ----------- Load models --------------
 phobert = AutoModel.from_pretrained("vinai/phobert-large")
 tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
@@ -32,23 +32,6 @@ def read_file(filename):
         return "Unsupported file format."
 
 
-def split_text(text, max_length):
-    sentences = text.split(', ')  # Chia đoạn thành các câu
-    segments = []
-    current_segment = ""
-    for sentence in sentences:
-        if len(current_segment) + len(sentence) + 2 <= max_length:  # Kiểm tra độ dài của đoạn văn bản
-            current_segment += sentence + '. '  # Thêm câu vào đoạn văn bản hiện tại
-        else:
-            # Thêm đoạn văn bản vào danh sách các đoạn
-            segments.append(current_segment.strip())
-            current_segment = sentence + '. '  # Bắt đầu một đoạn mới
-    if current_segment:
-        # Thêm đoạn văn bản cuối cùng vào danh sách các đoạn
-        segments.append(current_segment.strip())
-    return segments
-
-
 @app.route('/success', methods=['POST', 'GET'])
 def success():
     if request.method == 'POST':
@@ -65,6 +48,26 @@ def success():
 @app.route('/')
 def upload():
     return render_template('upload.html')
+
+
+def split_text(text, max_length):
+    words = text.split()  # Tách các từ trong đoạn văn thành danh sách
+    segments = []
+    current_segment = ""
+
+    for word in words:
+        if len(current_segment) + len(word) + 1 <= max_length:  # Kiểm tra độ dài của đoạn văn bản
+            current_segment += word + ' '  # Thêm từ vào đoạn văn bản hiện tại
+        else:
+            # Thêm đoạn văn bản vào danh sách các đoạn
+            segments.append(current_segment.strip())
+            current_segment = word + ' '  # Bắt đầu một đoạn mới
+
+    if current_segment:
+        # Thêm đoạn văn bản cuối cùng vào danh sách các đoạn
+        segments.append(current_segment.strip())
+
+    return segments
 
 
 @app.route('/answer', methods=['POST'])
