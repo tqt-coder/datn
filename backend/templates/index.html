@@ -8,19 +8,20 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <title>Bert-Transfromer</title>
+    <title>Tranformer</title>
 </head>
 
 
 <body>
     <div class="header">
         <div class="sides">
-            <a href="/" class="logo">+ New File</a>
+            <a href="/" class="logo">
+                <img class="img-new-file" src="{{ url_for('static',filename='assets/img/new-file.jpg') }}"
+                    alt="New file">
+            </a>
         </div>
-        <div class="sides"> <a href="#" class="menu"> </a></div>
         <div class="info">
-            <h1><a href="#">TRANSFORMER</a></h1>
-            <h3>Find answer from document</h3>
+            <h3>Trả lời câu hỏi qua đoạn văn</h3>
             <div class="meta">
                 <a href="https://twitter.com/nodws" target="_b" class="author"></a><br>
             </div>
@@ -28,52 +29,44 @@
     </div>
     <div className="ClientProvider">
         <div class="homePage">
-            <h2 class="title">VietNamese Question Answering</h2>
-            <div class="content">
-                <div class="titleQA">
-                    <span>Question Answering</span>
-                </div>
-            </div>
+
             <form class="space-y-2" action="/answer" method="post">
                 <div class="qA">
-                    <input class="qAInput" name="questions" type="text" placeholder="Your question here..." required
+                    <p class="text">Câu hỏi của bạn</p>
+                    <input class="qAInput" name="questions" type="text" placeholder="Viết câu hỏi của bạn..." required
                         value="{{question}}">
                     <button class="btnCompute" type="submit" value="Upload">
-                        Answer
+                        Đáp án
                     </button>
-                </div>
-                <label style="display: block;">
-                    <span class="titleContext">
-                        Context
-                    </span>
-                    <input type="text" hidden name="filename" value="{{name}}">
-                    <p name="file">{{name}}</p>
-                    {% if context != NULL %}
-                    <textarea cols="30" rows="10" class="inputContent" placeholder="Your context here...">
-                    {{context}}
-                    </textarea>
-                    {% endif %}
-                    <!-- <span class="inputContent" role="textbox" contenteditable="" spellcheck="false" dir="auto"> -->
-                    </span>
-                </label>
+                    <div>
+                        <p class="text">
+                            Văn bản
+                        </p>
+                        <input type="text" hidden name="filename" value="{{name}}">
+                        <p name="file">{{name}}</p>
+                        {% if context != NULL %}
+                        <textarea cols="30" rows="10" class="inputContent" placeholder="Văn bản của bạn...">
+                        {{context}}
+                        </textarea>
+                        {% endif %}
+
+                        {% if context == NULL %}
+                        <textarea class="input-context-hidden">
+                        </textarea>
+                        {% endif %}
+                    </div>
             </form>
-            {% if answer != NULL %}
-            <div class="answer">
-                <span>{{answer}}</span>
-                <!-- <span class="score">0.805</span>  -->
-            </div>
-            <div>
-                <a href="/success?file={{name}}">
-                    <button class="Button" type="submit" value="Upload">
-                        <span class="Button-inner">
-                            Any Questions ?
-                        </span>
-                    </button>
-                </a>
-            </div>
-            {% endif %}
         </div>
+        {% if answer != NULL %}
+        <div class="answer">
+            <span>{{answer}}</span>
+        </div>
+        <div>
+            <a href="/success?file={{name}}">
+                Đặt câu hỏi khác ?
+            </a>
+        </div>
+        {% endif %}
 </body>
-<script src="js/jquery-1.11.1.min.js"></script>
 
 </html>
