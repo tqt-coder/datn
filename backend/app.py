@@ -82,7 +82,7 @@ def answer():
     for segment in segments:
         # Tokenize inputs
         inputs = tokenizer_2.encode_plus(
-            question, segment, add_special_tokens=True, return_tensors="pt")
+            question, segment, add_special_tokens=True, return_tensors="pt", truncation=True, max_length=MAX_SIZE)
 
         # Move inputs tensor to device
         inputs = {key: value.to(DEVICE)
