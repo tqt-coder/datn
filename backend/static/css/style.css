@@ -3,17 +3,28 @@
 
 html,
 body {
-  margin: 0;
-  height: 120%;
   font-family: 'Josefin Sans', sans-serif;
+}
 
+* {
+  padding: 0;
+  margin: 0;
 }
 
 a {
   text-decoration: none
 }
 
-.header {}
+.header {
+  background-image: url("../assets/img/header.jpg");
+  position: relative;
+  height: 140px;
+  padding: 20px 10px;
+  margin: 0 0 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+}
 
 .logo {
   border-color: transparent;
@@ -21,8 +32,16 @@ a {
   display: block;
   width: 60px;
   position: relative;
-  margin-top: 10px;
-  right: -135%;
+  top: -32%;
+  right: -96%;
+}
+
+.title-header {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #000;
+  margin-top: 38px;
+  font-size: 35px;
 }
 
 .img-new-file {
@@ -33,10 +52,11 @@ a {
 }
 
 .text {
-  font-size: 13px !important;
+  font-size: 14px !important;
   color: #333;
-  font-weight: 300;
-  margin: 20px 0 5px;
+  font-weight: bold;
+  margin: 28px 0 5px;
+  text-decoration: underline;
 }
 
 .sides,
@@ -50,17 +70,6 @@ a {
   padding: 0% 10% -6px 10%;
   text-align: center;
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2)
-}
-
-.author {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: url(https://i.imgur.com/6DLCsZcb.jpg) center no-repeat;
-  background-size: cover;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  margin-bottom: 3px
 }
 
 .info h4,
@@ -116,12 +125,6 @@ a {
   align-items: center;
 }
 
-.space-y-2> :not([hidden])~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
-
 .qA {
   display: flex;
   position: relative;
@@ -137,21 +140,20 @@ a {
   outline: none;
   border-color: #333;
   border-width: 2px;
-  padding: 5px;
+  padding: 5px 15px;
 }
 
 .btnCompute {
-  height: 36px;
+  height: 39px;
   border-radius: 5px;
   background: #47bc0d;
   color: #c82828;
   font-weight: bold;
   width: 100px;
-  font-size: 14;
   font-size: 15px;
   position: absolute;
   right: 0%;
-  top: 11%;
+  top: 12%;
 }
 
 .file-name {
@@ -172,12 +174,24 @@ a {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.inputContent::-webkit-scrollbar {
+  display: none;
+}
+
 .inputContent {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   width: 1000px;
   display: block;
   height: 250px;
-  padding: 10px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  border-width: 2px;
+  margin: 20px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
 }
+
 
 .input-context-hidden {
   width: 1000px;
@@ -189,203 +203,40 @@ a {
 }
 
 .answer {
-  margin-top: 1rem
-    /* 16px */
-  ;
-  display: flex;
-  align-items: baseline;
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  background-color: rgb(236 253 245/var(--tw-bg-opacity));
+  background-color: #ceeae6;
   border-color: rgb(209 250 229/var(--tw-border-opacity));
   color: rgb(6 78 59/var(--tw-text-opacity));
-  border-radius: 0.375rem;
-  border-width: 1px;
-  padding: 0.5rem 0.75rem;
-  width: 89%;
+  font-size: 14px;
+  padding: 8px
 }
 
-.score {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.75rem
-    /* 12px */
-  ;
-  line-height: 1rem
-    /* 16px */
-  ;
-  margin-left: auto;
-}
-
-
-
-.sideBar {
-  --tw-bg-opacity: 1;
-  background-color: rgb(32 33 35 / var(--tw-bg-opacity));
-  max-width: 20rem
-    /* 320px */
-  ;
-  overflow-y: auto;
-  min-width: 20rem
-    /* 320px */
-  ;
-}
-
-/* SideBar */
-.sideBar {
-  --tw-bg-opacity: 1;
-  background-color: rgb(32 33 35 / var(--tw-bg-opacity));
-  max-width: 20rem
-    /* 320px */
-  ;
-  overflow-y: auto;
-  min-width: 20rem
-    /* 320px */
-  ;
-}
-
-.side {
-  padding: 0.5rem
-    /* 8px */
-  ;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-/* .bar {
-  flex: 1 1 0%;
-} */
-
-/* NewChat */
-.newChat {
-  --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity));
-  border-width: 1px;
-}
-
-.chatRow {
-  border-radius: 0.5rem
-    /* 8px */
-  ;
-  padding-left: 1.25rem
-    /* 20px */
-  ;
-  padding-right: 1.25rem
-    /* 20px */
-  ;
-  padding-top: 0.75rem
-    /* 12px */
-  ;
-  padding-bottom: 0.75rem
-    /* 12px */
-  ;
-  font-size: 0.875rem
-    /* 14px */
-  ;
-  line-height: 1.25rem
-    /* 20px */
-  ;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-  background-color: rgb(55 65 81 / 0.7);
-  cursor: pointer;
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.8, 1);
-  transition-duration: 150ms;
-  transition-duration: 200ms;
-}
-
-.iconChat {
-  height: 1rem
-    /* 16px */
-  ;
-  width: 1rem
-    /* 16px */
-  ;
-}
-
-.page {
-  flex: 1 1 0%;
-}
-
-/* Nút ? */
-/**
- * Outer Button styles
- */
-
-.Button {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  color: inherit;
-  display: inline-block;
-  font: inherit;
-  height: auto;
-  line-height: 1;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  text-align: center;
+.link-question {
+  display: block;
+  margin-top: 40px;
   text-decoration: none;
-  user-select: none;
+  color: #fff !important;
+  font-size: 15px;
+  background: #2c26c7;
+  width: 160px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
 }
 
-/**
- * Override default focus styles so we can apply our own.
- * Never do this unless you will replace them!!
- */
-
-.Button:focus {
-  outline: none;
+.link-question:hover {
+  text-decoration: none;
 }
 
-.Button::-moz-focus-inner {
-  border: 0;
+.block-answer {
+  margin: 20px;
+  width: 1000px;
 }
 
-.Button-inner {
-  align-items: center;
-  background: #456BD9;
-  border: 2px solid transparent;
-  border-radius: 99em;
-  color: #fff;
-  display: flex;
-  font-weight: 600;
-  height: 2.5em;
-  min-width: 2.5em;
-  padding: 0 1em;
-  position: relative;
-  transition: 0.2s ease;
-  width: 100%;
-  left: 116rem;
-  top: 25px;
-}
-
-.Button:focus .Button-inner {
-  border-color: #fff;
-  box-shadow: 0 0 0 2px #456BD9;
-}
-
-.Button:hover .Button-inner {
-  filter: brightness(1.1);
-}
-
-.Button:active .Button-inner {
-  filter: brightness(0.9);
-}
-
-/**
- * Demo styles
- */
-
-* {
-  box-sizing: border-box;
-  margin: 0;
+.block-answer__text {
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: bold;
 }

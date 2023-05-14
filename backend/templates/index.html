@@ -14,22 +14,15 @@
 
 <body>
     <div class="header">
-        <div class="sides">
-            <a href="/" class="logo">
-                <img class="img-new-file" src="{{ url_for('static',filename='assets/img/new-file.jpg') }}"
-                    alt="New file">
-            </a>
-        </div>
         <div class="info">
-            <h3>Trả lời câu hỏi qua đoạn văn</h3>
-            <div class="meta">
-                <a href="https://twitter.com/nodws" target="_b" class="author"></a><br>
-            </div>
+            <h3 class="title-header">Trả lời câu hỏi qua đoạn văn</h3>
         </div>
+        <a href="/" class="logo">
+            <img class="img-new-file" src="{{ url_for('static',filename='assets/img/new-file.jpg') }}" alt="New file">
+        </a>
     </div>
     <div className="ClientProvider">
         <div class="homePage">
-
             <form class="space-y-2" action="/answer" method="post">
                 <div class="qA">
                     <p class="text">Câu hỏi của bạn</p>
@@ -43,7 +36,7 @@
                             Văn bản
                         </p>
                         <input type="text" hidden name="filename" value="{{name}}">
-                        <p name="file">{{name}}</p>
+                        <p name="file" class="file-name">{{name}}</p>
                         {% if context != NULL %}
                         <textarea cols="30" rows="10" class="inputContent" placeholder="Văn bản của bạn...">
                         {{context}}
@@ -58,12 +51,12 @@
             </form>
         </div>
         {% if answer != NULL %}
-        <div class="answer">
-            <span>{{answer}}</span>
-        </div>
-        <div>
-            <a href="/success?file={{name}}">
-                Đặt câu hỏi khác ?
+        <div class="block-answer">
+            <p class="answer">
+                <span class="block-answer__text">Câu trả lời:</span> <span> </span>{{answer}}
+            </p>
+            <a href="/success?file={{name}}" class="link-question">
+                Đặt câu hỏi khác
             </a>
         </div>
         {% endif %}
