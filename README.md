@@ -1,5 +1,14 @@
 # Quesion Answering Web
 
+
+## Report
+
+
+Link recording trình bày:https://youtu.be/UtpsrP1clBg
+## Demo
+
+
+Link video demo: https://youtu.be/PX6ez2VT1M0
 ## Deploy
 
 1. Create virtual marchine in Azure:
