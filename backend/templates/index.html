@@ -38,7 +38,8 @@
                         <input type="text" hidden name="filename" value="{{name}}">
                         <p name="file" class="file-name">{{name}}</p>
                         {% if context != NULL %}
-                        <textarea cols="30" rows="10" class="inputContent" placeholder="Văn bản của bạn...">
+                        <textarea cols="30" rows="10" class="inputContent" name="text-context"
+                            placeholder="Văn bản của bạn...">
                         {{context}}
                         </textarea>
                         {% endif %}

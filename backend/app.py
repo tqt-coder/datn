@@ -35,10 +35,15 @@ def read_file(filename):
 @app.route('/success', methods=['POST', 'GET'])
 def success():
     if request.method == 'POST':
+        data = request.form
+        context_input = data['text-context']
         f = request.files['file']
         file_name = f.filename
-        f.save(f.filename)
-        return render_template("index.html", name=file_name)
+        if (file_name == ''):
+            return render_template("index.html",  context=context_input)
+        else:
+            f.save(f.filename)
+            return render_template("index.html", name=file_name)
     else:
         print("=================> Get method")
         file_name = request.args.get('file')
@@ -75,7 +80,11 @@ def answer():
     data = request.form
     question = data['questions']
     file_name = data['filename']
-    context = read_file(file_name)
+    context_input = data['text-context']
+    context = context_input
+    if (file_name != ''):
+        context = read_file(file_name)
+
     segments = split_text(context, MAX_SIZE)
 
     answers = []
