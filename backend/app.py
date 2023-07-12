@@ -9,10 +9,10 @@ from PyPDF2 import PdfFileReader
 MAX_SIZE = 300
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # ----------- Load models --------------
-phobert = AutoModel.from_pretrained("vinai/phobert-large")
-tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
-model_2 = RobertaForQuestionAnswering(phobert.config).from_pretrained(
-    "../model/phobert_model").to(DEVICE)
+# phobert = AutoModel.from_pretrained("vinai/phobert-large")
+# tokenizer_2 = AutoTokenizer.from_pretrained("vinai/phobert-large")
+# model_2 = RobertaForQuestionAnswering(phobert.config).from_pretrained(
+#     "../model/phobert_model").to(DEVICE)
 
 app = Flask(__name__)
 
@@ -39,6 +39,8 @@ def success():
         context_input = data['text-context']
         f = request.files['file']
         file_name = f.filename
+        if (context_input == '' and file_name == ''):
+            return render_template("upload.html",  error='Vui lòng điền vào ô văn bản của bạn hoặc tải lên một file')
         if (file_name == ''):
             return render_template("index.html",  context=context_input)
         else:

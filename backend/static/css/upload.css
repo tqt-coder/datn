@@ -7,6 +7,27 @@ body {
     margin: 0;
 }
 
+.carousel-inner {
+    height: 100px;
+}
+
+p.lead {
+    font-size: 18px;
+    color: red;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.carousel-item {
+    height: 100vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .menu {
     display: flex;
     height: 100%;
