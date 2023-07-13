@@ -1,13 +1,3 @@
-/*!
- * bootstrap-fileinput v5.2.3
- * http://plugins.krajee.com/file-input
- *
- * Author: Kartik Visweswaran
- * Copyright: 2014 - 2021, Kartik Visweswaran, Krajee.com
- *
- * Licensed under the BSD-3-Clause
- * https://github.com/kartik-v/bootstrap-fileinput/blob/master/LICENSE.md
- */
 !(function (e) {
   "use strict";
   "function" == typeof define && define.amd
@@ -6429,3 +6419,29 @@ $("#multiplefileupload").fileinput({
       "</div>",
   },
 });
+
+$(document).ready(function () {
+  const beError = $(".lead-be-js").html();
+  if (beError) {
+    $(".lead-js").addClass("d-none");
+    $(".lead-be-js").addClass("p-10");
+  }
+  $(".btn-js").click(function (e) {
+    e.preventDefault();
+    const contentTextVal = $(".content-text-js").val();
+    const inputFile = $(".input-file").val();
+    const result = $(".lead-js");
+    if (contentTextVal && inputFile) {
+      // $(".lead-be-js").html("");
+      $(".lead-be-js").addClass("d-none");
+      $(".lead-js").removeClass("d-none");
+      $(".lead-js").html(
+        `Vui lòng chọn một tính năng "Văn bản của bạn" hoặc "Tải tệp"!!!!!`
+      );
+      $(".lead-js").addClass("p-10");
+    } else {
+      $("#form").submit();
+    }
+  });
+});
+s;

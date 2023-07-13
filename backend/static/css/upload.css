@@ -7,6 +7,20 @@ body {
     margin: 0;
 }
 
+.app {
+    background: #f1e5e5;
+    height: 100vh;
+    overflow: auto;
+}
+
+.p-10 {
+    padding: 10px !important;
+}
+
+.d-none {
+    display: none;
+}
+
 .carousel-inner {
     height: 100px;
 }
@@ -16,6 +30,25 @@ p.lead {
     color: red;
     font-style: italic;
     font-weight: bold;
+    background: #fbff56;
+    border-radius: 6px;
+    margin: 0 20px;
+    width: 340px;
+}
+
+.container {
+    text-align: center;
+    padding: 20px 0 10px;
+    text-transform: uppercase;
+    color: #d96c35;
+}
+
+.file-drop-zone-title {
+    padding: 10px 10px !important;
+}
+
+h1.fw-light {
+    font-size: 40px;
 }
 
 .carousel-item {
@@ -30,10 +63,15 @@ p.lead {
 
 .menu {
     display: flex;
-    height: 100%;
     background-size: cover;
     flex-direction: column;
     align-items: center;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 0 10px;
 }
 
 .error-message {
@@ -93,7 +131,7 @@ p.lead {
 
 .form-group {
     display: flex;
-    width: 800px;
+    width: 1000px;
     flex-direction: column;
     margin: 10px auto;
 }
@@ -117,8 +155,15 @@ body {
 
 /*----------multiple-file-upload-----------*/
 .file-upload-contain {
+    display: flex;
     position: relative;
-    margin-bottom: 40px;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+button.btn.bg-warning {
+    height: 46px;
+    width: 200px;
 }
 
 .file-upload-contain .file-input,
@@ -151,9 +196,13 @@ body {
 .upload-area p {
     margin-bottom: 30px;
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
     color: #2580e8;
+}
+
+.file-preview {
+    width: 200px !important;
 }
 
 .upload-area p b {

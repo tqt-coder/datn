@@ -17,83 +17,60 @@
 </head>
 
 <body>
-    <div class="header">
-        <header>
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active"
-                        style="background-image: url('https://source.unsplash.com/LAaSoL0LrYs/1920x1080')">
-                        <div class="carousel-caption">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
+    <div class="app">
+        <div class="header">
+            <header>
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-item"
-                        style="background-image: url('https://source.unsplash.com/bF2vsubyHcQ/1920x1080')">
-                        <div class="carousel-caption">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active"
+                            style="background-image: url({{ url_for('static', filename='assets/img/bg1.jpg') }})">
                         </div>
-                    </div>
-                    <div class="carousel-item"
-                        style="background-image: url('https://source.unsplash.com/szFUQoyvrxM/1920x1080')">
-                        <div class="carousel-caption">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                        <div class="carousel-item"
+                            style="background-image: url({{ url_for('static', filename='assets/img/bg2.jpg') }})">
+                        </div>
+                        <div class="carousel-item"
+                            style="background-image: url({{ url_for('static', filename='assets/img/bg3.jpg') }})">
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
-
-        <!-- Page Content -->
-        <section class="py-5">
+            </header>
             <div class="container">
                 <h1 class="fw-light">Website trả lời câu hỏi</h1>
             </div>
-        </section>
-    </div>
-    <div class="menu">
-        {% if error != NULL %}
-        <p class="lead">{{error}}</p>
-        {% endif %}
-        <form action="/success" method="POST" enctype="multipart/form-data" id="form">
-            <div class="form-group amber-textarea active-amber-textarea-2">
-                <label for="exampleFormControlTextarea3">Văn bản của bạn</label>
-                <textarea class="form-control" name="text-context" id="exampleFormControlTextarea3"
-                    rows="16"></textarea>
-            </div>
-            <div class="container text-center mb-5 mt-5">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4>Tải tệp</h4>
-                    </div>
+        </div>
+        <div class="menu">
+            <form action="/success" method="POST" enctype="multipart/form-data" id="form">
+                <div class="form-group amber-textarea active-amber-textarea-2">
+                    <label for="exampleFormControlTextarea3">Văn bản của bạn</label>
+                    <textarea class="form-control content-text-js" name="text-context" id="exampleFormControlTextarea3"
+                        rows="12"></textarea>
                 </div>
-            </div>
-            <section class="bg-diffrent">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-8">
-                            <div class="file-upload-contain">
-                                <input id="multiplefileupload" name="file" type="file" accept=".pdf,.docx," />
-                            </div>
+                <section class="bg-diffrent">
+                    <div class="file-upload-contain">
+                        <div class="upload-file">
+                            <label class="label-upload-file" for="multiplefileupload">Tải tệp</label>
+                            <input class="input-file" id="multiplefileupload" name="file" type="file"
+                                accept=".pdf,.docx," />
                         </div>
+                        {% if error != NULL %}
+                        <p class="lead lead-be-js">{{error}}</p>
+                        {% endif %}
+                        <p class="lead lead-js"></p>
+                        <button class="btn bg-warning btn-js">Đặt câu hỏi <i
+                                class="fas fa-paper-plane ml-1"></i></button>
                     </div>
-                </div>
-            </section>
-
-            <button class="btn btn-primary">Đặt câu hỏi <i class="fas fa-paper-plane ml-1"></i></button>
-        </form>
+                </section>
+            </form>
+        </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -102,34 +79,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/js/plugins/sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/themes/fas/theme.min.js"></script>
     <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $("#upload_button").click(function () {
-                $("#fileinput").trigger("click");
-            });
-
-            $("#fileinput").change(function () {
-                var fileName = $("#fileinput")[0].files[0].name;
-                var fileExtension = fileName.split(".").pop().toLowerCase();
-
-                if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx") {
-                    // Hàm đợi 5 giây trước khi chuyển hướng
-                    setTimeout(function () {
-                        $("#upload_hint").text("File " + fileName + " đã được tải lên thành công!");
-                        $("#upload_hint").text("Đang tải file " + fileName + " lên server...").removeClass("error-message");
-                        setTimeout(function () {
-                            window.location.href = "/success";
-                            $("#form").submit();
-                        }, 2000);
-                    }, 1000);
-                } else {
-                    $("#upload_hint").text("Định dạng file không hợp lệ. Vui lòng chọn file pdf, doc hoặc docx.").addClass("error-message");
-                    $("#fileinput").val(""); // Xóa trường chọn file
-                }
-            });
-        });
-    </script>
-
 </body>
 
 </html>
