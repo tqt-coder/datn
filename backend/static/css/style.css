@@ -151,6 +151,7 @@ textarea#exampleFormControlTextarea3 {
   outline: none;
   border-color: #333;
   border-width: 2px;
+  font-size: 14px;
   padding: 5px 15px;
 }
 
