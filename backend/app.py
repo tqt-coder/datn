@@ -49,7 +49,8 @@ def success():
             return render_template("index.html", name=file_name, context=context)
     else:
         file_name = request.args.get('file')
-        return render_template("index.html", name=file_name)
+        context = read_file(file_name)
+        return render_template("index.html", name=file_name, context=context)
 
 
 @app.route('/')
