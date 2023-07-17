@@ -10,7 +10,7 @@ Link recording trình bày:https://youtu.be/UtpsrP1clBg
 
 Link video demo: https://youtu.be/PX6ez2VT1M0
 ## Deploy
-## link: http://34.172.178.221
+## link: http://35.209.117.190
 1. Create virtual marchine in Azure:
 
 - OS: Linux x64
