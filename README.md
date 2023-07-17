@@ -23,10 +23,9 @@ Link video demo: https://youtu.be/PX6ez2VT1M0
   ```
 1. Create virtual marchine in Azure:
 
-- OS: Linux x64
-- Size: 2 CPU, 8 GB RAM
-- SSD: > 10GB
-- IP public: 20.235.241.185
+- OS: Linux x64 
+- Size: 2 CPU, 16 GB RAM
+- SSD: 50
 - Inbound port: 443, 80, 22
 - Outbound: 80
 
