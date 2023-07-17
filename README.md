@@ -11,6 +11,16 @@ Link recording trình bày:https://youtu.be/UtpsrP1clBg
 Link video demo: https://youtu.be/PX6ez2VT1M0
 ## Deploy
 ## link: http://35.209.117.190
+
+## Link download model PhoBERT from the Google drive and place it in the "model/phobert_model" path
+  ```
+     https://drive.google.com/file/d/1S4WJx1m8t01gSNLGvZTuyAFyUKZlZloT/view?usp=sharing
+  ```
+- If you want to download in terminal for Unix OS:
+  ```
+      pip install gdown
+      gdown --id <id_file in GG drive>
+  ```
 1. Create virtual marchine in Azure:
 
 - OS: Linux x64
@@ -42,16 +52,6 @@ Link video demo: https://youtu.be/PX6ez2VT1M0
 ## Run Application
 
 1. Prerequisites:
-
-- Download model PhoBERT from the Google drive and place it in the "model/phobert_model" path
-  ```
-     https://drive.google.com/file/d/1S4WJx1m8t01gSNLGvZTuyAFyUKZlZloT/view?usp=sharing
-  ```
-- If you want to download in terminal of Ubuntu:
-  ```
-      pip install gdown
-      gdown --id <id_file in GG drive>
-  ```
 - Python: 3.8.0
 - Check your computer has GPU
 
