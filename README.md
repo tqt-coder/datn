@@ -44,6 +44,14 @@ Link video demo: https://youtu.be/PX6ez2VT1M0
 1. Prerequisites:
 
 - Download model PhoBERT from the Google drive and place it in the "model/phobert_model" path
+  ```
+     https://drive.google.com/file/d/1S4WJx1m8t01gSNLGvZTuyAFyUKZlZloT/view?usp=sharing
+  ```
+- If you want to download in terminal of Ubuntu:
+  ```
+      pip install gdown
+      gdown --id <id_file in GG drive>
+  ```
 - Python: 3.8.0
 - Check your computer has GPU
 
