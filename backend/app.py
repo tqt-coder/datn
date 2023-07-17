@@ -32,7 +32,7 @@ def read_file(filename):
         return "Unsupported file format."
 
 
-@app.route('/success', methods=['POST', 'GET'])
+@app.route('/success', methods=['POST'])
 def success():
     if request.method == 'POST':
         data = request.form
@@ -47,10 +47,20 @@ def success():
             f.save(f.filename)
             context = read_file(file_name)
             return render_template("index.html", name=file_name, context=context)
-    else:
-        file_name = request.args.get('file')
+    # else:
+    #     file_name = request.args.get('file')
+    #     context = read_file(file_name)
+    #     return render_template("index.html", name=file_name, context=context)
+
+
+@app.route('/change-question', methods=['POST'])
+def changeQuestion():
+    data = request.form
+    context = data['context']
+    file_name = data['file']
+    if context == '':
         context = read_file(file_name)
-        return render_template("index.html", name=file_name, context=context)
+    return render_template("index.html", name=file_name, context=context)
 
 
 @app.route('/')

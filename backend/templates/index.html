@@ -50,14 +50,17 @@
             </form>
         </div>
         {% if answer != NULL %}
-        <div class="block-answer">
+        <form class="block-answer" action="/change-question" method="post">
             <p class="answer">
                 <span class="block-answer__text">Câu trả lời:</span> <span> </span>{{answer}}
             </p>
-            <a href="/success?file={{name}}" class="link-question">
+            <input type="text" hidden value="{{name}}" name="file">
+            <input type="text" hidden value="{{context}}" name="context">
+            <!-- <a href="/success?file={{name}}" class="link-question">
                 Đặt câu hỏi khác
-            </a>
-        </div>
+            </a> -->
+            <button class="link-question">Đặt câu hỏi khác</button>
+        </form>
         {% endif %}
 </body>
 
